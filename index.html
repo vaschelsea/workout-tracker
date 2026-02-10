@@ -110,6 +110,41 @@
           </div>
         </div>
       </section>
+
+      <!-- Settings Page -->
+      <section id="page-settings" class="page">
+        <div class="page-scroll">
+          <div class="settings-section">
+            <h3 class="settings-section-title">Data</h3>
+            <div class="settings-card">
+              <div class="settings-item" id="settings-export">
+                <div class="settings-item-info">
+                  <div class="settings-item-label">Export Data</div>
+                  <div class="settings-item-desc">Download all workouts, routines, and records as a JSON file</div>
+                </div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-item" id="settings-import">
+                <div class="settings-item-info">
+                  <div class="settings-item-label">Import Data</div>
+                  <div class="settings-item-desc">Restore workouts, routines, and records from a JSON file</div>
+                </div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <input type="file" id="import-file-input" accept=".json" hidden>
+        </div>
+      </section>
     </main>
 
     <!-- Floating Action Button -->
@@ -154,6 +189,13 @@
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
         </svg>
         <span>Progress</span>
+      </button>
+      <button class="nav-btn" data-page="settings">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1.08-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1.08 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+        <span>Settings</span>
       </button>
     </nav>
 

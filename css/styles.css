@@ -1396,6 +1396,68 @@ select.input-field {
   background: var(--color-fill);
 }
 
+/* --- Settings --- */
+.settings-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.settings-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-md) 0 0;
+}
+
+.settings-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.settings-item:active {
+  background: var(--color-fill);
+}
+
+.settings-item svg {
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.settings-item-info {
+  flex: 1;
+  margin-right: var(--spacing-md);
+}
+
+.settings-item-label {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.settings-item-desc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.settings-divider {
+  height: 0.5px;
+  background: var(--color-separator);
+  margin-left: var(--spacing-md);
+}
+
 /* --- Animations --- */
 @keyframes fadeIn {
   from { opacity: 0; }
