@@ -61,8 +61,8 @@
   // ─── Navigation ───────────────────────────────────────
 
   let currentPage = 'home';
-  const pages = ['home', 'workouts', 'routines', 'progress'];
-  const pageTitles = { home: 'Home', workouts: 'History', routines: 'Routines', progress: 'Progress' };
+  const pages = ['home', 'workouts', 'routines', 'progress', 'settings'];
+  const pageTitles = { home: 'Home', workouts: 'History', routines: 'Routines', progress: 'Progress', settings: 'Settings' };
 
   function navigateTo(page) {
     if (!pages.includes(page)) return;
@@ -101,6 +101,7 @@
       case 'workouts': renderWorkouts(); break;
       case 'routines': renderRoutines(); break;
       case 'progress': renderProgress(); break;
+      case 'settings': break;
     }
   }
 
@@ -1340,6 +1341,48 @@
     modal.classList.remove('open');
   }
 
+  // ─── Settings / Data Export & Import ─────────────────
+
+  function exportData() {
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `workout-tracker-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function importData(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const imported = JSON.parse(e.target.result);
+        if (!imported || typeof imported !== 'object') {
+          alert('Invalid file: not a valid JSON object.');
+          return;
+        }
+        if (!Array.isArray(imported.workouts) || !Array.isArray(imported.routines)) {
+          alert('Invalid file: missing workouts or routines data.');
+          return;
+        }
+        if (!confirm('This will replace all your current data. Continue?')) return;
+        data.workouts = imported.workouts;
+        data.routines = imported.routines;
+        data.personalRecords = imported.personalRecords || {};
+        saveData();
+        renderPage(currentPage);
+        alert('Data imported successfully!');
+      } catch (err) {
+        alert('Failed to import: invalid JSON file.');
+      }
+    };
+    reader.readAsText(file);
+  }
+
   // ─── Event Bindings ───────────────────────────────────
 
   function init() {
@@ -1419,6 +1462,19 @@
         );
         renderVolume();
       });
+    });
+
+    // Settings: Export
+    $('#settings-export').addEventListener('click', exportData);
+
+    // Settings: Import
+    $('#settings-import').addEventListener('click', () => {
+      $('#import-file-input').click();
+    });
+    $('#import-file-input').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) importData(file);
+      e.target.value = '';
     });
 
     // Register service worker
