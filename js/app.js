@@ -501,7 +501,7 @@
     const chartH = h - padT - padB;
 
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const lineColor = isDark ? '#0A84FF' : '#007AFF';
+    const lineColor = '#D1FE17';
     const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
     const textColor = isDark ? '#98989D' : '#8E8E93';
 
@@ -537,8 +537,8 @@
 
     // Gradient fill
     const grad = ctx.createLinearGradient(0, padT, 0, padT + chartH);
-    grad.addColorStop(0, isDark ? 'rgba(10,132,255,0.3)' : 'rgba(0,122,255,0.15)');
-    grad.addColorStop(1, isDark ? 'rgba(10,132,255,0)' : 'rgba(0,122,255,0)');
+    grad.addColorStop(0, isDark ? 'rgba(209,254,23,0.3)' : 'rgba(209,254,23,0.15)');
+    grad.addColorStop(1, isDark ? 'rgba(209,254,23,0)' : 'rgba(209,254,23,0)');
     ctx.fillStyle = grad;
     ctx.lineTo(padL + chartW, padT + chartH);
     ctx.lineTo(padL, padT + chartH);
