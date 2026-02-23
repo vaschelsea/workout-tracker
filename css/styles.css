@@ -1360,8 +1360,12 @@ select.input-field {
   color: var(--color-text-secondary);
 }
 
+.detail-actions {
+  margin-top: var(--spacing-lg);
+}
+
 .detail-repeat-btn {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-sm);
 }
 
 /* --- Autocomplete --- */
