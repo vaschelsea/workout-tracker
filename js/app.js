@@ -332,7 +332,8 @@
 
     if (filtered.length === 0) {
       const msg = selectedCalendarDate ? 'No workouts on this day' : 'No workouts yet';
-      container.appendChild(emptyState(msg, 'Tap + to log a workout'));
+      const hint = selectedCalendarDate ? 'Tap + to log a workout for this day' : 'Tap + to log a workout';
+      container.appendChild(emptyState(msg, hint));
     } else {
       filtered.forEach(w => container.appendChild(workoutCard(w)));
     }
@@ -756,6 +757,12 @@
   // ─── Workout Starter Modal ───────────────────────────
 
   function openWorkoutStarter() {
+    if (currentPage === 'workouts' && selectedCalendarDate) {
+      pendingWorkoutDate = new Date(selectedCalendarDate);
+    } else {
+      pendingWorkoutDate = null;
+    }
+
     const routinesList = $('#starter-routines');
     routinesList.innerHTML = '';
 
@@ -794,6 +801,7 @@
 
   let editingWorkout = null;
   let workoutExercises = [];
+  let pendingWorkoutDate = null;
 
   function openWorkoutEditor(existingWorkout, routine) {
     editingWorkout = existingWorkout;
@@ -1017,24 +1025,34 @@
       }
     }
 
+    let workoutDate;
+    if (editingWorkout) {
+      workoutDate = editingWorkout.date;
+    } else if (pendingWorkoutDate) {
+      workoutDate = new Date(pendingWorkoutDate.getFullYear(), pendingWorkoutDate.getMonth(), pendingWorkoutDate.getDate(), 12, 0, 0).toISOString();
+    } else {
+      workoutDate = new Date().toISOString();
+    }
+
     const workout = {
       id: editingWorkout ? editingWorkout.id : uuid(),
-      date: editingWorkout ? editingWorkout.date : new Date().toISOString(),
+      date: workoutDate,
       routineName: name || 'Workout',
       exercises: JSON.parse(JSON.stringify(workoutExercises)),
     };
 
+    let newPRs = [];
     if (editingWorkout) {
       const idx = data.workouts.findIndex(w => w.id === editingWorkout.id);
       if (idx >= 0) data.workouts[idx] = workout;
+      recalculatePRs();
     } else {
       data.workouts.push(workout);
+      newPRs = checkAndUpdatePRs(workout);
     }
 
-    // Check for PRs
-    const newPRs = checkAndUpdatePRs(workout);
     saveData();
-
+    pendingWorkoutDate = null;
     closeModal('modal-workout');
     renderPage(currentPage);
 
@@ -1209,9 +1227,24 @@
       body.appendChild(exEl);
     });
 
+    // Action buttons
+    const actionsRow = el('div', { className: 'detail-actions' });
+
+    // Edit button
+    const editBtn = el('button', {
+      className: 'btn-primary',
+      textContent: 'Edit Workout',
+      onClick: () => {
+        closeModal('modal-detail');
+        openWorkoutEditor(workout);
+      },
+    });
+    actionsRow.appendChild(editBtn);
+    body.appendChild(actionsRow);
+
     // Repeat button
     const repeatBtn = el('button', {
-      className: 'btn-primary detail-repeat-btn',
+      className: 'btn-secondary detail-repeat-btn',
       textContent: 'Repeat This Workout',
       onClick: () => {
         closeModal('modal-detail');
@@ -1404,7 +1437,7 @@
     $('#starter-cancel').addEventListener('click', () => closeModal('modal-starter'));
 
     // Workout modal
-    $('#workout-cancel').addEventListener('click', () => closeModal('modal-workout'));
+    $('#workout-cancel').addEventListener('click', () => { pendingWorkoutDate = null; closeModal('modal-workout'); });
     $('#workout-save').addEventListener('click', saveWorkout);
     $('#add-exercise-btn').addEventListener('click', () => {
       workoutExercises.push({ name: '', type: 'weights', sets: [{ reps: 10, weight: 0 }] });
