@@ -1,4 +1,4 @@
-const CACHE_NAME = 'workout-tracker-v2';
+const CACHE_NAME = 'workout-tracker-v3';
 const ASSETS = [
   '/',
   '/index.html',
@@ -7,6 +7,7 @@ const ASSETS = [
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
+  '/hero-athlete.png',
 ];
 
 // Install: cache all assets
