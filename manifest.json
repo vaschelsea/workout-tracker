@@ -6,7 +6,7 @@
   "scope": "/workout-tracker/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#D1FE17",
+  "theme_color": "#000000",
   "orientation": "portrait",
   "icons": [
     {
