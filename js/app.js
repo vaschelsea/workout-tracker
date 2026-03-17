@@ -715,6 +715,18 @@
 
   function workoutCard(workout) {
     const d = new Date(workout.date);
+    const exCount = workout.exercises.length;
+    const totalSets = workout.exercises.reduce((sum, ex) => sum + (ex.sets ? ex.sets.length : 0), 0);
+    const totalVolume = workout.exercises.reduce((sum, ex) => {
+      if (!ex.sets) return sum;
+      return sum + ex.sets.reduce((s, set) => s + ((set.weight || 0) * (set.reps || 0)), 0);
+    }, 0);
+
+    let summaryText = `${exCount} exercise${exCount !== 1 ? 's' : ''} · ${totalSets} set${totalSets !== 1 ? 's' : ''}`;
+    if (totalVolume > 0) {
+      summaryText += ` · ${totalVolume.toLocaleString()} kg`;
+    }
+
     const card = el('div', {
       className: 'workout-card',
       onClick: () => openWorkoutDetail(workout),
@@ -723,16 +735,7 @@
         el('span', { className: 'workout-card-title', textContent: workout.routineName || 'Workout' }),
         el('span', { className: 'workout-card-date', textContent: formatDate(d) }),
       ),
-      el('div', { className: 'workout-card-exercises' },
-        ...workout.exercises.map(ex =>
-          el('span', {
-            className: `exercise-tag ${ex.type}`,
-            textContent: ex.type === 'weights'
-              ? `${ex.name} · ${ex.sets ? ex.sets.length : 0}s`
-              : `${ex.name} · ${ex.duration || 0}min`,
-          })
-        ),
-      ),
+      el('div', { className: 'workout-card-summary', textContent: summaryText }),
     );
     return card;
   }

@@ -292,6 +292,15 @@ body {
   text-transform: uppercase;
 }
 
+.workout-card-summary {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
 .workout-card-exercises {
   display: flex;
   flex-wrap: wrap;
