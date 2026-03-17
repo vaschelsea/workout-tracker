@@ -34,6 +34,94 @@
           <div class="greeting-card" id="greeting-card">
             <h2 id="greeting-text">Good morning</h2>
             <p id="greeting-sub">Ready to train?</p>
+            <div class="hero-image" aria-hidden="true">
+              <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="heroFade" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#000" stop-opacity="0.6"/>
+                    <stop offset="40%" stop-color="#000" stop-opacity="0"/>
+                    <stop offset="85%" stop-color="#000" stop-opacity="0"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.8"/>
+                  </linearGradient>
+                  <linearGradient id="bodyGrad" x1="0.3" y1="0" x2="0.7" y2="1">
+                    <stop offset="0%" stop-color="#D4FF00" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#D4FF00" stop-opacity="0.08"/>
+                  </linearGradient>
+                  <linearGradient id="accentGlow" x1="0.5" y1="0" x2="0.5" y2="1">
+                    <stop offset="0%" stop-color="#D4FF00" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#D4FF00" stop-opacity="0"/>
+                  </linearGradient>
+                  <clipPath id="heroClip"><rect width="400" height="280"/></clipPath>
+                </defs>
+                <g clip-path="url(#heroClip)">
+                  <!-- Ambient glow behind figure -->
+                  <ellipse cx="200" cy="260" rx="120" ry="30" fill="#D4FF00" opacity="0.04"/>
+                  <ellipse cx="200" cy="160" rx="80" ry="120" fill="#D4FF00" opacity="0.03"/>
+
+                  <!-- Figure - Athletic male silhouette in power stance -->
+                  <g transform="translate(200,140)">
+                    <!-- Left leg -->
+                    <polygon points="-18,50 -35,130 -25,132 -10,55" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+                    <polygon points="-35,130 -42,138 -22,138 -25,132" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+                    <!-- Right leg (wider stance) -->
+                    <polygon points="18,50 40,128 30,132 12,55" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+                    <polygon points="40,128 48,136 28,138 30,132" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+
+                    <!-- Torso -->
+                    <polygon points="-22,50 22,50 28,-20 -28,-20" fill="#111" stroke="#D4FF00" stroke-width="0.6" opacity="0.95"/>
+                    <!-- Chest definition lines -->
+                    <line x1="-12" y1="-10" x2="0" y2="-5" stroke="#D4FF00" stroke-width="0.3" opacity="0.4"/>
+                    <line x1="12" y1="-10" x2="0" y2="-5" stroke="#D4FF00" stroke-width="0.3" opacity="0.4"/>
+                    <line x1="0" y1="-5" x2="0" y2="20" stroke="#D4FF00" stroke-width="0.3" opacity="0.3"/>
+
+                    <!-- Left arm raised holding dumbbell -->
+                    <polygon points="-28,-20 -38,-18 -55,-75 -45,-78" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+                    <!-- Left forearm curled -->
+                    <polygon points="-55,-75 -45,-78 -38,-105 -48,-103" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+                    <!-- Left dumbbell -->
+                    <rect x="-56" y="-118" width="26" height="6" rx="0" fill="#D4FF00" opacity="0.8"/>
+                    <rect x="-53" y="-122" width="6" height="14" rx="0" fill="#D4FF00" opacity="0.9"/>
+                    <rect x="-39" y="-122" width="6" height="14" rx="0" fill="#D4FF00" opacity="0.9"/>
+
+                    <!-- Right arm extended down with dumbbell -->
+                    <polygon points="28,-20 38,-16 48,35 38,38" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+                    <!-- Right forearm -->
+                    <polygon points="48,35 38,38 42,60 50,58" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+                    <!-- Right dumbbell -->
+                    <rect x="33" y="58" width="26" height="6" rx="0" fill="#D4FF00" opacity="0.6"/>
+                    <rect x="36" y="54" width="6" height="14" rx="0" fill="#D4FF00" opacity="0.7"/>
+                    <rect x="50" y="54" width="6" height="14" rx="0" fill="#D4FF00" opacity="0.7"/>
+
+                    <!-- Shoulders (trapezoid) -->
+                    <polygon points="-28,-20 -34,-24 34,-24 28,-20" fill="#111" stroke="#D4FF00" stroke-width="0.5" opacity="0.9"/>
+
+                    <!-- Neck -->
+                    <rect x="-8" y="-36" width="16" height="14" fill="#111" stroke="#D4FF00" stroke-width="0.4" opacity="0.9"/>
+
+                    <!-- Head -->
+                    <ellipse cx="0" cy="-48" rx="14" ry="16" fill="#111" stroke="#D4FF00" stroke-width="0.6" opacity="0.95"/>
+
+                    <!-- Muscle definition - deltoids -->
+                    <path d="M-28,-20 Q-36,-10 -38,-16" stroke="#D4FF00" stroke-width="0.4" fill="none" opacity="0.4"/>
+                    <path d="M28,-20 Q36,-10 38,-16" stroke="#D4FF00" stroke-width="0.4" fill="none" opacity="0.4"/>
+                  </g>
+
+                  <!-- Scan lines effect -->
+                  <g opacity="0.06">
+                    <line x1="0" y1="20" x2="400" y2="20" stroke="#D4FF00" stroke-width="0.5"/>
+                    <line x1="0" y1="60" x2="400" y2="60" stroke="#D4FF00" stroke-width="0.5"/>
+                    <line x1="0" y1="100" x2="400" y2="100" stroke="#D4FF00" stroke-width="0.5"/>
+                    <line x1="0" y1="140" x2="400" y2="140" stroke="#D4FF00" stroke-width="0.5"/>
+                    <line x1="0" y1="180" x2="400" y2="180" stroke="#D4FF00" stroke-width="0.5"/>
+                    <line x1="0" y1="220" x2="400" y2="220" stroke="#D4FF00" stroke-width="0.5"/>
+                    <line x1="0" y1="260" x2="400" y2="260" stroke="#D4FF00" stroke-width="0.5"/>
+                  </g>
+
+                  <!-- Top/bottom fade overlay -->
+                  <rect width="400" height="280" fill="url(#heroFade)"/>
+                </g>
+              </svg>
+            </div>
           </div>
 
           <div class="stats-row" id="home-stats">

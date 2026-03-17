@@ -28,7 +28,7 @@
 
   /* Layout */
   --header-height: 52px;
-  --nav-height: 82px;
+  --nav-height: 56px;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-top: env(safe-area-inset-top, 0px);
 
@@ -76,9 +76,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--header-height);
-  padding: 0 var(--spacing-md);
-  padding-top: var(--safe-top);
+  min-height: var(--header-height);
+  padding: var(--safe-top) var(--spacing-md) 0;
   background: var(--color-bg);
   border-bottom: var(--border-thin);
   position: relative;
@@ -126,7 +125,7 @@ body {
   height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 0 var(--spacing-md) calc(var(--nav-height) + var(--safe-bottom) + 80px);
+  padding: 0 var(--spacing-md) calc(var(--nav-height) + var(--safe-bottom) + 40px);
 }
 
 /* --- Greeting Card --- */
@@ -152,6 +151,20 @@ body {
   margin-top: var(--spacing-xs);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.hero-image {
+  margin-top: var(--spacing-md);
+  width: 100%;
+  max-height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-image svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* --- Stats Row --- */
@@ -698,8 +711,8 @@ body {
   align-items: stretch;
   background: var(--color-bg);
   border-top: var(--border-thin);
-  padding-bottom: var(--safe-bottom);
-  height: calc(var(--nav-height) + var(--safe-bottom));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  min-height: var(--nav-height);
   flex-shrink: 0;
   position: relative;
   z-index: 100;
