@@ -485,10 +485,10 @@
       });
 
     if (points.length < 2) {
-      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-text-tertiary').trim();
-      ctx.font = '14px system-ui';
+      ctx.fillStyle = '#666666';
+      ctx.font = "14px 'JetBrains Mono', monospace";
       ctx.textAlign = 'center';
-      ctx.fillText('Need at least 2 data points', w / 2, h / 2);
+      ctx.fillText('NEED 2+ DATA POINTS', w / 2, h / 2);
       return;
     }
 
@@ -501,16 +501,15 @@
     const chartW = w - padL - padR;
     const chartH = h - padT - padB;
 
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const lineColor = '#D1FE17';
-    const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
-    const textColor = isDark ? '#98989D' : '#8E8E93';
+    const lineColor = '#D4FF00';
+    const gridColor = '#333333';
+    const textColor = '#666666';
 
     // Y-axis grid
     ctx.strokeStyle = gridColor;
-    ctx.lineWidth = 0.5;
+    ctx.lineWidth = 1;
     ctx.fillStyle = textColor;
-    ctx.font = '11px system-ui';
+    ctx.font = "11px 'JetBrains Mono', monospace";
     ctx.textAlign = 'right';
     for (let i = 0; i <= 4; i++) {
       const y = padT + chartH - (chartH * i / 4);
@@ -525,8 +524,8 @@
     // Plot line
     ctx.strokeStyle = lineColor;
     ctx.lineWidth = 2;
-    ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';
+    ctx.lineJoin = 'miter';
+    ctx.lineCap = 'square';
     ctx.beginPath();
     points.forEach((p, i) => {
       const x = padL + (chartW * i / (points.length - 1));
@@ -538,8 +537,8 @@
 
     // Gradient fill
     const grad = ctx.createLinearGradient(0, padT, 0, padT + chartH);
-    grad.addColorStop(0, isDark ? 'rgba(209,254,23,0.3)' : 'rgba(209,254,23,0.15)');
-    grad.addColorStop(1, isDark ? 'rgba(209,254,23,0)' : 'rgba(209,254,23,0)');
+    grad.addColorStop(0, 'rgba(212,255,0,0.25)');
+    grad.addColorStop(1, 'rgba(212,255,0,0)');
     ctx.fillStyle = grad;
     ctx.lineTo(padL + chartW, padT + chartH);
     ctx.lineTo(padL, padT + chartH);
@@ -554,14 +553,14 @@
       ctx.arc(x, y, 4, 0, Math.PI * 2);
       ctx.fillStyle = lineColor;
       ctx.fill();
-      ctx.strokeStyle = isDark ? '#1C1C1E' : '#fff';
+      ctx.strokeStyle = '#111111';
       ctx.lineWidth = 2;
       ctx.stroke();
     });
 
     // X-axis labels
     ctx.fillStyle = textColor;
-    ctx.font = '10px system-ui';
+    ctx.font = "10px 'JetBrains Mono', monospace";
     ctx.textAlign = 'center';
     const labelStep = Math.max(1, Math.floor(points.length / 5));
     points.forEach((p, i) => {
@@ -587,10 +586,9 @@
     const h = 200;
     ctx.clearRect(0, 0, w, h);
 
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const barColor = isDark ? '#30D158' : '#34C759';
-    const textColor = isDark ? '#98989D' : '#8E8E93';
-    const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+    const barColor = '#D4FF00';
+    const textColor = '#666666';
+    const gridColor = '#333333';
 
     // Group workouts by period
     const buckets = {};
@@ -623,9 +621,9 @@
 
     if (entries.length === 0) {
       ctx.fillStyle = textColor;
-      ctx.font = '14px system-ui';
+      ctx.font = "14px 'JetBrains Mono', monospace";
       ctx.textAlign = 'center';
-      ctx.fillText('No volume data yet', w / 2, h / 2);
+      ctx.fillText('NO VOLUME DATA YET', w / 2, h / 2);
       return;
     }
 
@@ -638,9 +636,9 @@
 
     // Grid
     ctx.strokeStyle = gridColor;
-    ctx.lineWidth = 0.5;
+    ctx.lineWidth = 1;
     ctx.fillStyle = textColor;
-    ctx.font = '10px system-ui';
+    ctx.font = "10px 'JetBrains Mono', monospace";
     ctx.textAlign = 'right';
     for (let i = 0; i <= 4; i++) {
       const y = padT + chartH - (chartH * i / 4);
@@ -662,12 +660,11 @@
       const y = padT + chartH - barH;
 
       ctx.fillStyle = barColor;
-      roundRect(ctx, x, y, barWidth, barH, 4);
-      ctx.fill();
+      ctx.fillRect(x, y, barWidth, barH);
 
       // Label
       ctx.fillStyle = textColor;
-      ctx.font = '10px system-ui';
+      ctx.font = "10px 'JetBrains Mono', monospace";
       ctx.textAlign = 'center';
       ctx.fillText(label, padL + gap * i + gap / 2, h - 6);
     });
